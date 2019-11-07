@@ -7,7 +7,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+	integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+	integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+	crossorigin="">
+	</script>
+
+   <style>
+
+		#issMap{
+			height: 495px;
+			width: 560px
+		}
+
+
+	</style>
+
 	</head>
+	
+
+	
+
+
+
 	<body class="is-preload">
 
 		<!-- Sidebar -->
@@ -17,7 +42,7 @@
 						<ul>
 							<li><a href="#intro">Welcome</a></li>
 							<li><a href="#one">Data</a></li>
-							<li><a href="#two">Hardware</a></li>
+							<li><a href="#two">Structure</a></li>
 							<li><a href="#three">Meet the team</a></li>
 						</ul>
 					</nav>
@@ -42,7 +67,8 @@
 				<!-- One -->
 					 <section id="one" class="wrapper style2 spotlights">
 						 <section>
-							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+							<!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a> -->
+							<div id = "issMap"></div>
 							<div class="content">
 								<div class="inner">
 									<h2>Door Locked/Unlocked</h2>
@@ -51,6 +77,15 @@
 											<button id = "submit ">request status</button>
 											<div id = "output">
 	<script>
+		const mymap = L.map('issMap').setView([40, -80], 2);
+	
+		const attribution = 
+		'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+        const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		const tiles = L.tileLayer(tileUrl,{ attribution });
+		tiles.addTo(mymap);
+		
+
 		
 		const api_url = "https://api.thingspeak.com/channels/886152/feeds.json?api_key=JDM0TOWAHQDDVW7Z&results=2"
 		
@@ -58,11 +93,33 @@
 			const response = await fetch(api_url)
 			const data = await response.json();
 			const lock1feed = data.feeds[1].field1
+			const lat = data.channel.latitude
+			const lon = data.channel.longitude
+			console.log(lat,lon)
+
+			L.marker([lat,lon]).addTo(mymap);
+
 
 			document.getElementById('lock1').textContent = lock1feed;
 			console.log(lock1feed)
+
+
+
+
+			
+			//server-side implementation
+			// const options = {
+			// 	method: 'POST',
+			// 	headers:{
+			// 		'Content-Type': 'application/json'
+			// 	},
+			// 	body: JSON.stringify(data)
+			// };
+			// fetch('api', options);
 	}
 		getISS();
+		
+		setInterval(getISS,1000);
 
 	</script>
 											</div>
@@ -74,7 +131,8 @@
 							</div>
 						</section>
 						<section>
-							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
+							<!-- <a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a> -->
+							<div id = "issMap2"></div>
 							<div class="content">
 								<div class="inner">
 									<h2>Door Open/Closed</h2>

@@ -100,9 +100,12 @@
 			console.log(lat,lon)
 
 			L.marker([lat,lon]).addTo(mymap);
+            const lock_condition = "";
+			if (lock1feed == "0041"){
+				lock_condition = "locked, opening, detect motion"
+			}
 
-
-			document.getElementById('lock1').textContent = lock1feed;
+			document.getElementById('lock1').textContent = lock_condition;
 			console.log(lock1feed)
 
 

@@ -71,15 +71,14 @@
 							<div id = "issMap"></div>
 							<div class="content">
 								<div class="inner">
-									<h2>Door Locked/Unlocked</h2>
+									<h2>Your door status:</h2>
 									<p>Your door: <span id="lock1"></span></p>
-									<h2>Door Open/Closed</h2>
-									<p>Need to describe...</p>
+									
 									<p>
 											
 											<div id = "output">
 	<script>
-		const mymap = L.map('issMap').setView([40, -80], 3);
+		const mymap = L.map('issMap').setView([40, -80], 4);
 	
 		const attribution = 
 		'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -100,37 +99,37 @@
 			console.log(lat,lon)
 
 			L.marker([lat,lon]).addTo(mymap);
-            const lock_condition = "";
+            var lock_condition = ""
 			if (lock1feed == "0041"){
-				lock_condition = "locked, opening, detect motion"
+				 lock_condition = "locked, opening, detect motion"
 			}
 
 			if (lock1feed == "0042"){
-				lock_condition = "locked, opening, detect motion"
+				 lock_condition = "locked, opening, detect motion"
 			}
 
 			if (lock1feed == "0043"){
-				lock_condition = "locked, opening, detect motion"
+				 lock_condition = "locked, opening, detect motion"
 			}
 
 			if (lock1feed == "0044"){
-				lock_condition = "locked, opening, detect motion"
+			    lock_condition = "locked, opening, detect motion"
 			}
 
 			if (lock1feed == "0045"){
-				lock_condition = "locked, opening, detect motion"
+				 lock_condition = "locked, opening, detect motion"
 			}
 
 			if (lock1feed == "0046"){
-				lock_condition = "locked, opening, detect motion"
+				 lock_condition = "locked, opening, detect motion"
 			}
 
 			if (lock1feed == "0047"){
-				lock_condition = "locked, opening, detect motion"
+				 lock_condition = "locked, opening, detect motion"
 			}
 
 			if (lock1feed == "0048"){
-				lock_condition = "locked, opening, detect motion"
+				 lock_condition = "locked, opening, detect motion"
 			}
 
 	
@@ -170,10 +169,12 @@
 				<!-- Two -->
 					<section id="two" class="wrapper style1 fade-up">
 						<div class="inner">
-							<h2>Smart Lock Hardware</h2>
+							<h2>Smart Lock Structure</h2>
 							<p>For this project we designed our hardware around a standard household door lock. A pressure sensor is placed between two surfaces of the interior locking mechanism to detect when the lock has changed position. This change in position is fed through an Analog to Digital Converter and read by an Arduino Nano. The Nano is connected to a LoRa module which communicates with the cloud and allows our system to output to you on this website.</p>
 							<!-- Need to add images of hardware setup & info about IR pair setup-->
+							<img src="images/ppt.PNG" alt="Flowers in Chania">
 						</div>
+						
 					</section>
 
 				<!-- Three -->

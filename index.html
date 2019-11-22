@@ -104,32 +104,36 @@
 				 lock_condition = "Locked, closed, motion detected"
 			}
 
-			if (lock1feed == "42"){
+			else if (lock1feed == "42"){
 				 lock_condition = "Locked, Closed, No Motion detected"
 			}
 
-			if (lock1feed == "43"){
+			else if (lock1feed == "43"){
 				 lock_condition = "Locked, Open, Motion detected"
 			}
 
-			if (lock1feed == "44"){
+			else if (lock1feed == "44"){
 			    lock_condition = "Locked, Open, No Motion detected"
 			}
 
-			if (lock1feed == "45"){
+			else if (lock1feed == "45"){
 				 lock_condition = " Unlocked, Closed, Motion detected"
-			}Unlocked, Closed, Motion
+			}
 
-			if (lock1feed == "46"){
+			else if (lock1feed == "46"){
 				 lock_condition = "Unlocked, Closed, No Motion detected"
 			}
 
-			if (lock1feed == "47"){
+			else if (lock1feed == "47"){
 				 lock_condition = "Unlocked, Open, Motion detected"
 			}
 
-			if (lock1feed == "48"){
+			else if (lock1feed == "48"){
 				 lock_condition = "Unlocked, Open, No Motion detected"
+			}
+
+			else {
+				lock_condition = "No status update"
 			}
 
 	
